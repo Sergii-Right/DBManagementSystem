@@ -1,0 +1,32 @@
+﻿@model IEnumerable<DBManagementSystem.Models.DBases>
+@{ 
+    Layout = null;
+}
+<p>
+    @*@Html.ActionLink("Create New Database", "Create", null, new { @class = "btn btn-info"})*@
+    @Ajax.ActionLink("Create New Database", "Create", null, new AjaxOptions { UpdateTargetId = "dbContent" }, new { @class = "btn btn-info" })
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                @Ajax.ActionLink(item.Name, "Details", new { id = item.ID }, new AjaxOptions { UpdateTargetId = "tblContent" }, new { @class = "btn btn-link" })
+            </td>
+            <td class="text-right">
+                <div class="btn-group" role="group">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </div>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,34 @@
+﻿@model DBManagementSystem.Models.DBTable
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Ajax.BeginForm("Create", new AjaxOptions { UpdateTargetId = "tblContent" })) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", style = "max-width:none;" } })
+            <span class="input-group-btn">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </span>
+        </div>
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.DBasesID)
+        <br />
+    </div>
+}
+
+<div>
+    @Ajax.ActionLink("Back to List", "Details", "DBases", new { id = Model.DBasesID }, new AjaxOptions { UpdateTargetId = "tblContent" }, new { @class = "btn btn-info" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

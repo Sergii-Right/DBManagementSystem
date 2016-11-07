@@ -1,0 +1,26 @@
+﻿@model DBManagementSystem.Models.DBases
+
+@{
+    Layout = null;
+}
+<p>
+    @Ajax.ActionLink("Add New Table", "Create", "DBTables", new { dbID = Model.ID }, new AjaxOptions { UpdateTargetId = "tblContent" }, new { @class = "btn btn-info" })
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.DBTables.First().Name)</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.DBTables)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.Name, "Details", "DBTables", new { id = item.ID }, null)</td>
+            <td class="text-right">
+                <div class="btn-group" role="group">
+                    @Html.ActionLink("Edit", "Edit", "DBTables", new { id = item.ID }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Delete", "Delete", "DBTables", new { id = item.ID }, new { @class = "btn btn-danger" })
+                </div>
+            </td>
+        </tr>
+    }
+</table>

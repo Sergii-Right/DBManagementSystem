@@ -1,0 +1,30 @@
+﻿@model DBManagementSystem.Models.DBases
+
+@{
+    Layout = null;
+}
+
+<h2>Create Database</h2>
+
+
+@using (Ajax.BeginForm("Create", new AjaxOptions { UpdateTargetId = "dbContent" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+        <div class="input-group">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", style = "max-width:none;" } })
+            <span class="input-group-btn">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </span>
+        </div>
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        <br />
+    </div>
+}
+
+<div>
+    @Ajax.ActionLink("Back to List", "_Table", null, new AjaxOptions { UpdateTargetId = "dbContent"}, new { @class = "btn btn-info" })
+</div>

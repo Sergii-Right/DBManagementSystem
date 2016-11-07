@@ -1,0 +1,20 @@
+﻿@model DBManagementSystem.Models.DBTable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<table class="table table-striped">
+    <tr>
+        <td>Column Name</td>
+    </tr>
+    <tr>
+        <td>Column Type</td>
+    </tr>
+</table>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
